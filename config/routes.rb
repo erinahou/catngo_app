@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :cats do
+    resources :bookings, only: [:index, :create]
+  end
+  get '/dashboard', to: 'pages#dashboard'
+  patch '/bookings/:id/accept', to: 'bookings#accept', as: :accept_booking
+  patch '/bookings/:id/decline', to: 'bookings#decline', as: :decline_booking
 end
