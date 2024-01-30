@@ -1,0 +1,12 @@
+.card {
+  border-radius: $card-border-radius;
+  border: 0;
+}
+
+.card-img-top {
+  border-radius: $card-border-radius;
+}
+
+.card-body {
+  padding: $card-spacer-y 0;
+}

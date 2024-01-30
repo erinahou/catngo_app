@@ -1,0 +1,15 @@
+// Erina's Code
+.btn {
+  border-radius: $border-radius-lg;
+  margin: 0 8px;
+}
+
+.btn-primary {
+  background-color: $gray;
+  color: $text-white;
+  border: none;
+
+  &:hover {
+    background-color: $blue;
+  }
+}

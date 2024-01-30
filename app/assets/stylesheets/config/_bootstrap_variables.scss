@@ -10,6 +10,11 @@ $headings-font-family:   $headers-font;
 $body-bg:                $light-gray;
 $font-size-base:         1rem;
 
+// Container max width
+$container-max-widths: (
+  xxl: 1920px
+);
+
 // Colors
 $body-color: $gray;
 $primary:    $blue;
@@ -19,8 +24,18 @@ $danger:     $red;
 $warning:    $orange;
 
 // Buttons & inputs' radius
-$border-radius:    2px;
-$border-radius-lg: 2px;
-$border-radius-sm: 2px;
+$input-btn-padding-y: 12px;
+$input-btn-padding-x: 16px;
+$border-radius-xs: 4px;
+$border-radius-sm: 8px;
+$border-radius-md: 16px;
+$border-radius-lg: 24px;
 
 // Override other variables below!
+
+// Navbar
+$navbar-brand-font-size: 2rem;
+$navbar-padding-x: 1.25rem;
+
+// Cards
+$card-border-radius: $border-radius-md;

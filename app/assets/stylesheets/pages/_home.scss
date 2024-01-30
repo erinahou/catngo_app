@@ -1,1 +1,9 @@
 // Specific CSS for your home-page
+#proposition {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 300px;
+  text-align: center;
+  background-color: $green;
+}
