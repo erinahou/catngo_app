@@ -1,0 +1,14 @@
+<div class="container my-5 text-center">
+  <div class="card rounded">
+    <div class="card-body">
+      <%= link_to cat_path(@cat) do %>
+        <%= image_tag "cat-test.jpeg", class: "img-fluid rounded cat-image", alt: @cat.name %>
+      <% end %>
+      <h2 class="card-title mt-3"><%= @cat.name %></h2>
+      <p class="card-text">Description: <%= @cat.description %></p>
+      <p class="card-text">Age: <%= @cat.age %> years</p>
+      <p class="card-text">Price per day: <%= number_to_currency(@cat.price_per_day, unit: "AUD") %></p>
+      <%= link_to 'Back to Cats', root_path, class: 'btn btn-secondary mt-3' %>
+    </div>
+  </div>
+</div>
