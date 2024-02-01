@@ -1,0 +1,7 @@
+<%= simple_form_for @cat do |f| %>
+  <%= f.input :name, placeholder: 'John' %>
+  <%= f.input :age, placeholder: 'Age' %>
+  <%= f.input :description, placeholder: 'Occasionally friendly' %>
+  <%= f.input :price_per_day, placeholder: '$' %>
+  <%= f.button :submit, 'create', class: "btn btn-primary" %>
+<% end %>
