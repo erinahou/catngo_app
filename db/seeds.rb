@@ -5,9 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-
 require 'faker'
-
 users = 5.times.map do
   User.create(
     email: Faker::Internet.email,
@@ -16,9 +14,7 @@ users = 5.times.map do
     last_name: Faker::Name.last_name
   )
 end
-
 shuffled_user_ids = users.map(&:id).shuffle
-
 5.times do
   Cat.create(
     name: Faker::Creature::Cat.name,
