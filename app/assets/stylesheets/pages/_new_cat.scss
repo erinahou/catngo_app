@@ -1,0 +1,17 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.form-container {
+  width: 25%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  .btn.btn-primary {
+    width: 100%;
+  }
+}
