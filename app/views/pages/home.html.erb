@@ -6,65 +6,20 @@
 <div class="container px-5 py-5">
   <!-- Cats cards -->
   <div class="row row-gap-3">
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-      <div class="card">
-        <%= image_tag "cat-test.jpeg", class:"card-img-top", alt:"Ruth the cat" %>
-        <div class="card-body">
-          <h5 class="card-title">Ruth the cat 1</h5>
-          <p class="card-text">Gentle, kind and sweet.</p>
-          <p class="card-text">$60 AUD</p>
+    <% @cats.each do |cat| %>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card">
+          <%= link_to cat_path(cat) do %>
+            <%= image_tag "cat-test.jpeg", class: "card-img-top", alt: "Ruth the cat" %>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= cat.name %></h5>
+            <p class="card-text"><%= cat.description %></p>
+            <p class="card-text">Price per day: <%= number_to_currency(cat.price_per_day, unit: "AUD") %></p>
+            <%= link_to 'View Details', cat_path(cat) %>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-      <div class="card">
-        <%= image_tag "cat-test.jpeg", class:"card-img-top", alt:"Ruth the cat" %>
-        <div class="card-body">
-          <h5 class="card-title">Ruth the cat 2</h5>
-          <p class="card-text">Gentle, kind and sweet.</p>
-          <p class="card-text">$60 AUD</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-      <div class="card">
-        <%= image_tag "cat-test.jpeg", class:"card-img-top", alt:"Ruth the cat" %>
-        <div class="card-body">
-          <h5 class="card-title">Ruth the cat 3</h5>
-          <p class="card-text">Gentle, kind and sweet.</p>
-          <p class="card-text">$60 AUD</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-      <div class="card">
-        <%= image_tag "cat-test.jpeg", class:"card-img-top", alt:"Ruth the cat" %>
-        <div class="card-body">
-          <h5 class="card-title">Ruth the cat 4</h5>
-          <p class="card-text">Gentle, kind and sweet.</p>
-          <p class="card-text">$60 AUD</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-      <div class="card">
-        <%= image_tag "cat-test.jpeg", class:"card-img-top", alt:"Ruth the cat" %>
-        <div class="card-body">
-          <h5 class="card-title">Ruth the cat 5</h5>
-          <p class="card-text">Gentle, kind and sweet.</p>
-          <p class="card-text">$60 AUD</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-      <div class="card">
-        <%= image_tag "cat-test.jpeg", class:"card-img-top", alt:"Ruth the cat" %>
-        <div class="card-body">
-          <h5 class="card-title">Ruth the cat 6</h5>
-          <p class="card-text">Gentle, kind and sweet.</p>
-          <p class="card-text">$60 AUD</p>
-        </div>
-      </div>
-    </div>
+    <% end %>
   </div>
 </div>
