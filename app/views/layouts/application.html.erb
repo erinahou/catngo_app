@@ -21,7 +21,7 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <%= link_to "Sign Out", destroy_user_session_path, data: {turbo_method: :delete} %>
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto">
               <li class="nav-item active">
@@ -35,7 +35,7 @@
                 <img class="avatar dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://kitt.lewagon.com/placeholder/users/ssaunier" />
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="#">My dashboard</a>
-                  <a class="dropdown-item" data-turbo-method="delete" href="#">Log out</a>
+                  <%= link_to "Sign Out", destroy_user_session_path, class:"dropdown-item", data: {turbo_method: :delete} %>
                 </div>
               </li>
           </ul>
