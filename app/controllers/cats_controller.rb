@@ -37,6 +37,17 @@ class CatsController < ApplicationController
     end
   end
 
+  def destroy
+    @cat = Cat.find(params[:id])
+
+    if can_edit_cat?(@cat)
+      @cat.destroy
+      redirect_to root_path, notice: "Cat deleted successfully."
+    else
+      redirect_to root_path, alert: "This isnt your cat!"
+    end
+  end
+
   private
 
   def cats_params
