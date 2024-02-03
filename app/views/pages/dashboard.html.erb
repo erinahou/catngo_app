@@ -20,6 +20,7 @@
                 <p class="card-text"><%= cat.description %></p>
                 <p class="card-text">Price per day: <%= number_to_currency(cat.price_per_day, unit: "$") %></p>
                 <%= link_to 'View Details', cat_path(cat) %>
+                <%= link_to 'Edit', edit_cat_path(cat) %>
               </div>
             </div>
           </div>

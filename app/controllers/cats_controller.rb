@@ -15,7 +15,7 @@ class CatsController < ApplicationController
       @cat = current_user.cats.build(cats_params)
 
       if @cat.save
-        redirect_to root_path
+        redirect_to dashboard_path
       else
         render :new
       end
@@ -23,7 +23,7 @@ class CatsController < ApplicationController
 
   def edit
     @cat = Cat.find(params[:id])
-    redirect_to root_path unless can_edit_cat?(@cat)
+    redirect_to dashboard_path unless can_edit_cat?(@cat)
   end
 
   def update
@@ -31,7 +31,7 @@ class CatsController < ApplicationController
 
     if can_edit_cat?(@cat)
       @cat.update(cats_params)
-      redirect_to root_path
+      redirect_to dashboard_path
     else
       redirect_to root_path, alert: "This isnt your cat!"
     end
