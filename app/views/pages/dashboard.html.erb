@@ -1,39 +1,32 @@
-<div class="container mt-5">
-  <h1 class="mb-4">Dashboard</h1>
-
-  <div class="row">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">User Information</h5>
-          <p class="card-text">
-            <h1>Hi <%= @user.first_name %> <%= @user.last_name %></h1>
-
-          </p>
-        </div>
-      </div>
+<!-- Erina's Code -->
+<div class="container  px-5 py-5">
+  <h1>Hi <%= @user.first_name %>!</h1>
+  <div class="my-listings mt-5">
+    <div class="section-title mb-5">
+      <h2 class="card-title">My Listings</h2>
+      <%= link_to '+ Create a new listing', new_cat_path, class: 'btn btn-primary mx-5' %>
     </div>
-
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">My Listings</h5>
-          <% if @recent_cats.any? %>
-            <ul>
-              <% @recent_cats.each do |cat| %>
-                <li>
-                  <strong>Name:</strong> <%= cat.name %><br>
-                  <strong>Description:</strong> <%= cat.description %><br>
-                  <strong>Age:</strong> <%= cat.age %> years<br>
-                  <strong>Price per Day:</strong> $<%= cat.price_per_day %><br>
-                </li>
+    <!-- Cats cards -->
+    <div class="row">
+      <% if @recent_cats.any? %>
+        <% @recent_cats.each do |cat| %>
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="card">
+              <%= link_to cat_path(cat) do %>
+                <%= image_tag "cat-test.jpeg", class: "card-img-top", alt: "Ruth the cat" %>
               <% end %>
-            </ul>
-          <% else %>
-            <p>No recent cats.</p>
-          <% end %>
-        </div>
-      </div>
+              <div class="card-body">
+                <h5 class="card-title"><%= cat.name %></h5>
+                <p class="card-text"><%= cat.description %></p>
+                <p class="card-text">Price per day: <%= number_to_currency(cat.price_per_day, unit: "$") %></p>
+                <%= link_to 'View Details', cat_path(cat) %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <p>No recent cats.</p>
+      <% end %>
     </div>
   </div>
 </div>
