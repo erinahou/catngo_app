@@ -2,7 +2,11 @@
   <div class="card rounded">
     <div class="card-body">
       <%= link_to cat_path(@cat) do %>
-        <%= image_tag "cat-test.jpeg", class: "img-fluid rounded cat-image", alt: @cat.name %>
+        <% if @cat.photo.attached? %>
+  <%= cl_image_tag @cat.photo.key, class: "card-img-top", alt: @cat.name %>
+<% else %>
+  <%= image_tag "cat-test.jpeg", class: "card-img-top", alt: "Default Image" %>
+<% end %>
       <% end %>
       <h2 class="card-title mt-3"><%= @cat.name %></h2>
       <p class="card-text">Description: <%= @cat.description %></p>

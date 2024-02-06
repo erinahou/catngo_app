@@ -3,5 +3,6 @@
   <%= f.input :age, placeholder: 'Age' %>
   <%= f.input :description, placeholder: 'Occasionally friendly' %>
   <%= f.input :price_per_day, placeholder: '$' %>
+  <%= f.input :photo, as: :file %>
   <%= f.button :submit, 'create', class: "btn btn-primary" %>
 <% end %>

@@ -7,19 +7,24 @@
   <!-- Cats cards -->
   <div class="row row-gap-3">
     <% @cats.each do |cat| %>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="card">
-          <%= link_to cat_path(cat) do %>
-            <%= image_tag "cat-test.jpeg", class: "card-img-top", alt: "Ruth the cat" %>
-          <% end %>
-          <div class="card-body">
-            <h5 class="card-title"><%= cat.name %></h5>
-            <p class="card-text"><%= cat.description %></p>
-            <p class="card-text">Price per day: <%= number_to_currency(cat.price_per_day, unit: "AUD") %></p>
-            <%= link_to 'View Details', cat_path(cat) %>
-          </div>
-        </div>
+  <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="card">
+      <%= link_to cat_path(cat) do %>
+        <% if cat.photo.attached? %>
+          <%= cl_image_tag cat.photo.key, class: "card-img-top", alt: cat.name %>
+        <% else %>
+          <%= image_tag "cat-test.jpeg", class: "card-img-top", alt: "Default Image" %>
+        <% end %>
+      <% end %>
+      <div class="card-body">
+        <h5 class="card-title"><%= cat.name %></h5>
+        <p class="card-text"><%= cat.description %></p>
+        <p class="card-text">Price per day: <%= number_to_currency(cat.price_per_day, unit: "AUD") %></p>
+        <%= link_to 'View Details', cat_path(cat) %>
       </div>
-    <% end %>
+    </div>
+  </div>
+<% end %>
+
   </div>
 </div>

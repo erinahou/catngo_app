@@ -51,7 +51,7 @@ class CatsController < ApplicationController
   private
 
   def cats_params
-    params.require(:cat).permit(:name, :description, :age, :price_per_day)
+    params.require(:cat).permit(:name, :description, :age, :price_per_day, :photo)
   end
 
   def can_edit_cat?(cat)
