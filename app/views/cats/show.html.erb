@@ -1,17 +1,26 @@
-<div class="container my-5 text-center">
-  <div class="card rounded">
-    <div class="card-body">
+=======
+<div class="cat-card">
+    <!-- Header image -->
+    <%= link_to cat_path(@cat) do %>
       <% if @cat.photo.attached? %>
-        <%= cl_image_tag @cat.photo.key, class: "card-img-top", alt: @cat.name %>
+        <div class="hero">
+          <%= cl_image_tag @cat.photo.key, alt: @cat.name %>
+        </div>
       <% else %>
-        <%= image_tag "cat-test.jpeg", class: "card-img-top", alt: "Default Image" %>
+        <div class="hero">
+          <%= image_tag "cat-test.jpeg", alt: "Default Image" %>
+        </div>
       <% end %>
-      <h2 class="card-title mt-3"><%= @cat.name %></h2>
-      <p class="card-text">Description: <%= @cat.description %></p>
-      <p class="card-text">Age: <%= @cat.age %> years</p>
-      <p class="card-text">Price per day: <%= number_to_currency(@cat.price_per_day, unit: "AUD") %></p>
-
-      <!-- Date Picker and Request Form -->
+    <% end %>
+    <!-- Text content -->
+    <div class="description">
+      <h2><%= @cat.name %></h2>
+      <h4 class="price"><%= number_to_currency(@cat.price_per_day, unit: "$") %>/day</h4>
+      <div class="about">
+        <p>I am <%= @cat.age %> years old</p>
+        <p>...and I am <%= @cat.description %></p>
+      </div>
+       <!-- Date Picker and Request Form -->
       <%= form_with(model: [ @cat, @booking ], url: cat_bookings_path(@cat), method: :post) do |form| %>
         <div class="form-group">
           <%= form.label :start_date, 'Start Date' %>
@@ -27,8 +36,32 @@
           <%= form.submit 'Request to Book', class: 'btn btn-primary' %>
         </div>
       <% end %>
-
       <%= link_to 'Back to Cats', root_path, class: 'btn btn-secondary mt-3' %>
     </div>
-  </div>
+      <div class="reviews-container">
+  <h2>Reviews (<%= @reviews&.count || 0 %>)</h2>
+  <%= link_to "Write a Review", new_cat_review_path(@cat), class: "btn btn-primary" %>
 </div>
+  <div class="reviews">
+    <% if @reviews.present? %>
+      <% @reviews.each do |review| %>
+        <div class="review">
+          <% if review.user.present? %>
+            <p><strong><%= review.user.first_name %></strong></p>
+          <% else %>
+            <p><strong>User not found</strong></p>
+          <% end %>
+            <p><strong>
+              <% review.rating.to_i.times do %>
+              <i class="fa-solid fa-star"></i>
+            <% end %>
+          </strong></p>
+          <p><%= review.content %></p>
+        </div>
+      <% end %>
+    <% else %>
+      <p>No reviews available.</p>
+    <% end %>
+  </div>
+  </div>
+

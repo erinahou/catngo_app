@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :cats do
     resources :bookings
+    resources :reviews, only: [:index, :new, :create]
   end
 
   get '/dashboard', to: 'pages#dashboard'

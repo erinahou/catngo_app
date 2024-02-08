@@ -6,6 +6,7 @@ class CatsController < ApplicationController
   def show
     @cat = Cat.find(params[:id])
     @booking = Booking.new
+    @reviews = @cat.reviews
   end
 
   def new

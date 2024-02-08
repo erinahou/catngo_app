@@ -11,16 +11,19 @@
     <div class="card">
       <%= link_to cat_path(cat) do %>
         <% if cat.photo.attached? %>
-          <%= cl_image_tag cat.photo.key, class: "card-img-top", alt: cat.name %>
+          <div class="card-img-top">
+            <%= cl_image_tag cat.photo.key, alt: cat.name %>
+          </div>
         <% else %>
-          <%= image_tag "cat-test.jpeg", class: "card-img-top", alt: "Default Image" %>
+          <div class="card-img-top">
+            <%= image_tag "cat-test.jpeg", alt: "Default Image" %>
+          </div>
         <% end %>
       <% end %>
       <div class="card-body">
         <h5 class="card-title"><%= cat.name %></h5>
         <p class="card-text"><%= cat.description %></p>
-        <p class="card-text">Price per day: <%= number_to_currency(cat.price_per_day, unit: "AUD") %></p>
-        <%= link_to 'View Details', cat_path(cat) %>
+        <p class="card-text"><%= number_to_currency(cat.price_per_day, unit: "$") %>/day</p>
       </div>
     </div>
   </div>
