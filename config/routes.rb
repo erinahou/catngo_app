@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :cats do
-    resources :bookings, only: [:index, :create]
+    resources :bookings
   end
+
   get '/dashboard', to: 'pages#dashboard'
-  patch '/bookings/:id/accept', to: 'bookings#accept', as: :accept_booking
-  patch '/bookings/:id/decline', to: 'bookings#decline', as: :decline_booking
+  patch '/cats/:cat_id/bookings/:id/accept', to: 'bookings#accept', as: :accept_booking
+  patch '/cats/:cat_id/bookings/:id/decline', to: 'bookings#decline', as: :decline_booking
 end
-# hello
