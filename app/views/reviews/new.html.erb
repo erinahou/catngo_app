@@ -1,0 +1,21 @@
+<div class="page-container">
+  <h1>Create a review</h1>
+
+  <div class="form-container">
+    <%= simple_form_for [@cat, @review] do |f| %>
+      <%= f.input :rating, placeholder: '5' %>
+      <%= f.input :content, placeholder: 'Leave a review' %>
+      <%= f.button :submit, 'Create', class: "btn btn-primary" %>
+
+      <% if @review.errors.any? %>
+        <div class="alert alert-danger">
+          <ul>
+            <% @review.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
