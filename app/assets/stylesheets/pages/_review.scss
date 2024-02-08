@@ -1,0 +1,26 @@
+.reviews-container {
+  display: flex; /* Use flexbox layout */
+  align-items: center; /* Center items vertically */
+  padding-left: 10px; /* Add padding to the left */
+}
+
+.reviews-container h2 {
+  margin-right: 10px; /* Add margin to the right of the <h2> */
+}
+
+.reviews-container .btn {
+  margin-left: auto; /* Push the button to the right */
+  padding-right: 10px; /* Add padding to the right of the button */
+}
+
+.reviews {
+  margin-top: 10px; /* Add margin to separate the reviews from the header */
+  margin-left: 10px;
+}
+
+.review {
+  border-bottom: 1px solid #ccc; /* Add a grey line at the bottom of each review */
+  padding-bottom: 20px; /* Add some space between each review and the grey line */
+  margin-bottom: 20px; /* Add some space between each review */
+  text-align: left;
+}
