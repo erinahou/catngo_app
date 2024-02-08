@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :cats do
     resources :bookings, only: [:index, :create]
+    resources :reviews, only: [:index, :new, :create]
   end
   get '/dashboard', to: 'pages#dashboard'
   patch '/bookings/:id/accept', to: 'bookings#accept', as: :accept_booking
