@@ -4,8 +4,9 @@ class CatsController < ApplicationController
   end
 
   def show
-      @cat = Cat.find(params[:id])
-      @reviews = @cat.reviews
+    @cat = Cat.find(params[:id])
+    @booking = Booking.new
+    @reviews = @cat.reviews
   end
 
   def new
