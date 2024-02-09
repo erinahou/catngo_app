@@ -1,6 +1,8 @@
 <!-- Erina's Code -->
 <div class="container px-5 py-5">
   <h1>Hi <%= @user.first_name %>!</h1>
+
+  <!-- My Listings Section -->
   <div class="my-listings mt-5">
     <div class="section-title mb-5">
       <h2 class="card-title">My Listings</h2>
@@ -10,6 +12,7 @@
     <div class="row">
       <% if @recent_cats.any? %>
         <% @recent_cats.each do |cat| %>
+          <!-- Card for each cat listing -->
           <div class="col-12 col-sm-6 col-md-4 col-lg-3">
             <div class="card">
               <%= link_to cat_path(cat) do %>
@@ -26,14 +29,16 @@
                   <div class="booking-request mt-3">
                     <p><%= "#{booking.user.first_name} #{booking.user.last_name}" %> is requesting to rent <%= cat.name %>.</p>
                     <!-- Form for accepting and declining -->
-                    <%= form_with(model: [cat, booking], url: accept_booking_path(cat, booking), method: :patch, local: true) do |form| %>
-                      <%= form.hidden_field :status, value: 'accepted' %>
-                      <%= form.submit 'Accept', class: 'btn btn-success mr-2' %>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                      <%= form_with(model: [cat, booking], url: accept_booking_path(cat, booking), method: :patch, local: true, class: 'mr-2') do |form| %>
+                        <%= form.hidden_field :status, value: 'accepted' %>
+                        <%= form.submit 'Accept', class: 'btn btn-success' %>
                       <% end %>
-                    <%= form_with(model: [cat, booking], url: decline_booking_path(cat, booking), method: :patch, local: true) do |form| %>
-                      <%= form.hidden_field :status, value: 'declined' %>
-                      <%= form.submit 'Decline', class: 'btn btn-danger' %>
-                    <% end %>
+                      <%= form_with(model: [cat, booking], url: decline_booking_path(cat, booking), method: :patch, local: true) do |form| %>
+                        <%= form.hidden_field :status, value: 'declined' %>
+                        <%= form.submit 'Decline', class: 'btn btn-danger' %>
+                      <% end %>
+                    </div>
                   </div>
                 <% end %>
               </div>
@@ -42,6 +47,45 @@
         <% end %>
       <% else %>
         <p>No recent cats.</p>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Reserved Cats Section -->
+  <div class="reserved-cats mt-5">
+    <div class="section-title mb-5">
+      <h2 class="card-title">My Reserved Cats</h2>
+    </div>
+    <!-- Display all reservations for the user -->
+    <div class="row">
+      <% @user.bookings.each do |booking| %>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="card">
+            <%= link_to cat_path(booking.cat) do %>
+              <%= image_tag "cat-test.jpeg", class: "card-img-top", alt: "Reserved Cat" %>
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= booking.cat.name %></h5>
+              <% if booking.status.present? %>
+                <% case booking.status %>
+                  <% when Booking.statuses['pending'] %>
+                    <p class="card-text">Reservation status: Pending</p>
+                  <% when Booking.statuses['accepted'] %>
+                    <p class="card-text">Reservation status: Accepted</p>
+                  <% when Booking.statuses['declined'] %>
+                    <p class="card-text">Reservation status: Declined</p>
+                <% end %>
+                <% if booking.status != 'declined' %>
+                  <p class="card-text">Reserved from <%= booking.start_date %> to <%= booking.end_date %>.</p>
+                <% else %>
+                  <p class="card-text">Booking was declined.</p>
+                <% end %>
+              <% else %>
+                <p class="card-text">Reservation status: Pending</p>
+              <% end %>
+            </div>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>

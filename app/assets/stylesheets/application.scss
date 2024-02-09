@@ -34,3 +34,36 @@ h3 {
 h4 {
   font-size: 24px;
 }
+#flash-messages {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
+  background-color: white;
+  color: black !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  display: none;
+  border: 1px solid #ccc;
+  z-index: 1000; /* Add a higher z-index value */
+}
+
+#flash-messages .flash {
+  margin-bottom: 10px;
+  color: black !important;
+}
+
+.notice {
+  background-color: transparent !important;
+  color: black !important;
+  z-index: 1000; /* Add a higher z-index value */
+}
+
+.alert {
+  background-color: #f44336;
+  color: white !important;
+  z-index: 1000; /* Add a higher z-index value */
+}

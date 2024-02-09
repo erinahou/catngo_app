@@ -1,68 +1,74 @@
 <div class="cat-card">
-    <!-- Header image -->
-    <%= link_to cat_path(@cat) do %>
-      <% if @cat.photo.attached? %>
-        <div class="hero">
-          <%= cl_image_tag @cat.photo.key, alt: @cat.name %>
-        </div>
-      <% else %>
-        <div class="hero">
-          <%= image_tag "cat-test.jpeg", alt: "Default Image" %>
-        </div>
-      <% end %>
+  <!-- Header image -->
+  <%= link_to cat_path(@cat) do %>
+    <% if @cat.photo.attached? %>
+      <div class="hero">
+        <%= cl_image_tag @cat.photo.key, alt: @cat.name %>
+      </div>
+    <% else %>
+      <div class="hero">
+        <%= image_tag "cat-test.jpeg", alt: "Default Image" %>
+      </div>
     <% end %>
-    <!-- Text content -->
-    <div class="description">
-      <h2><%= @cat.name %></h2>
-      <h4 class="price"><%= number_to_currency(@cat.price_per_day, unit: "$") %>/day</h4>
-      <div class="about">
-        <p>I am <%= @cat.age %> years old</p>
-        <p>...and I am <%= @cat.description %></p>
-      </div>
-       <!-- Date Picker and Request Form -->
-      <%= form_with(model: [ @cat, @booking ], url: cat_bookings_path(@cat), method: :post) do |form| %>
-        <div class="form-group">
-          <%= form.label :start_date, 'Start Date' %>
-          <%= form.date_field :start_date, class: 'form-control', required: true %>
-        </div>
+  <% end %>
 
-        <div class="form-group">
-          <%= form.label :end_date, 'End Date' %>
-          <%= form.date_field :end_date, class: 'form-control', required: true %>
-        </div>
+  <!-- Text content -->
+  <div class="description">
+    <h2><%= @cat.name %></h2>
+    <h4 class="price"><%= number_to_currency(@cat.price_per_day, unit: "$") %>/day</h4>
 
-        <div class="form-group">
-          <%= form.submit 'Request to Book', class: 'btn btn-primary' %>
-        </div>
-      <% end %>
-      <!-- Reviews -->
-      <div class="reviews-container">
-        <h2>Reviews (<%= @reviews&.count || 0 %>)</h2>
-        <%= link_to "Write a Review", new_cat_review_path(@cat), class: "btn btn-primary" %>
+    <div class="about">
+      <p>I am <%= @cat.age %> years old</p>
+      <p>...and I am <%= @cat.description %></p>
+    </div>
+
+    <!-- Date Picker and Request Form -->
+    <%= form_with(model: [ @cat, @booking ], url: cat_bookings_path(@cat), method: :post, id: "cat-reservation-form") do |form| %>
+      <div class="form-group">
+        <%= form.label :start_date, 'Start Date' %>
+        <%= form.date_field :start_date, class: 'form-control', required: true %>
       </div>
-      <div class="reviews">
-        <% if @reviews.present? %>
-          <% @reviews.each do |review| %>
-            <div class="review">
-              <% if review.user.present? %>
-                <p><strong><%= review.user.first_name %></strong></p>
-              <% else %>
-                <p><strong>User not found</strong></p>
-              <% end %>
-              <p>
-                <strong>
-                  <% review.rating.to_i.times do %>
-                    <i class="fa-solid fa-star"></i>
-                  <% end %>
-                </strong>
-              </p>
-              <p><%= review.content %></p>
-            </div>
-          <% end %>
-        <% else %>
-          <p>No reviews available.</p>
+
+      <div class="form-group">
+        <%= form.label :end_date, 'End Date' %>
+        <%= form.date_field :end_date, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= form.submit 'Request to Book', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+
+    <!-- Reviews -->
+    <div class="reviews-container">
+      <h2>Reviews (<%= @reviews&.count || 0 %>)</h2>
+      <%= link_to "Write a Review", new_cat_review_path(@cat), class: "btn btn-primary" %>
+    </div>
+
+    <div class="reviews">
+      <% if @reviews.present? %>
+        <% @reviews.each do |review| %>
+          <div class="review">
+            <% if review.user.present? %>
+              <p><strong><%= review.user.first_name %></strong></p>
+            <% else %>
+              <p><strong>User not found</strong></p>
+            <% end %>
+            <p>
+              <strong>
+                <% review.rating.to_i.times do %>
+                  <i class="fa-solid fa-star"></i>
+                <% end %>
+              </strong>
+            </p>
+            <p><%= review.content %></p>
+          </div>
         <% end %>
-        </div>
-      </div>
+      <% else %>
+        <p>No reviews available.</p>
+      <% end %>
+    </div>
+
     <%= link_to 'Back to Cats', root_path, class: 'btn btn-secondary mt-3' %>
+  </div>
 </div>
