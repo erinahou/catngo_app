@@ -13,7 +13,8 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to @cat, notice: 'Review was successfully created.'
     else
-      render 'cats/show'
+      flash.now[:alert] = 'Invalid review data. Please check your input.'
+      render :new
     end
   end
 
