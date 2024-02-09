@@ -1,15 +1,39 @@
 // Erina's Code
 .btn {
   border-radius: $border-radius-lg;
-  margin: 0 8px;
 }
 
 .btn-primary {
-  background-color: $gray;
-  color: $text-white;
+  background-color: $cng-primary;
+  color: $cng-lime;
   border: none;
 
   &:hover {
-    background-color: $blue;
+    background-color: $cng-primary-hover;
+    color: $cng-lime;
+  }
+
+  &:active {
+    background-color: $cng-primary-active !important;
+    color: $cng-lime !important;
+  }
+}
+
+.btn:active {
+  /* Your custom styles here */
+  /* For example: */
+  background-color: #ff0000; /* Change background color */
+  border-color: #ff0000; /* Change border color */
+  color: #ffffff; /* Change text color */
+}
+
+.btn-secondary {
+  background-color: white;
+  color: $cng-primary;
+  border: 1px solid $cng-primary;
+
+  &:hover {
+    background-color: $cng-lime;
+    color: $cng-primary;
   }
 }
