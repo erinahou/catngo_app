@@ -37,15 +37,14 @@
       <div class="form-group">
         <%= form.submit 'Request to Book', class: 'btn btn-primary' %>
       </div>
-    <% end %>
-
-    <!-- Reviews -->
-    <div class="reviews-container">
-      <h2>Reviews (<%= @reviews&.count || 0 %>)</h2>
-      <%= link_to "Write a Review", new_cat_review_path(@cat), class: "btn btn-primary" %>
-    </div>
-
-    <div class="reviews">
+     <% end %>
+    
+      <!-- Reviews -->
+      <div class="reviews-container">
+        <h4>Reviews (<%= @reviews&.count || 0 %>)</h4>
+        <%= link_to "Write a Review", new_cat_review_path(@cat), class: "btn btn-secondary" %>
+      </div>
+     <div class="reviews">
       <% if @reviews.present? %>
         <% @reviews.each do |review| %>
           <div class="review">
@@ -68,7 +67,6 @@
         <p>No reviews available.</p>
       <% end %>
     </div>
-
-    <%= link_to 'Back to Cats', root_path, class: 'btn btn-secondary mt-3' %>
   </div>
 </div>
+

@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!
 
   def new
     @cat = Cat.find(params[:cat_id])
@@ -13,10 +14,8 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to @cat, notice: 'Review was successfully created.'
     else
-      @booking = Booking.new
-      @reviews = @cat.reviews
-
-      render 'cats/show'
+      flash.now[:alert] = 'Invalid review data. Please check your input.'
+      render :new
     end
   end
 

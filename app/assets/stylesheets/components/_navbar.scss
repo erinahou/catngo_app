@@ -1,7 +1,8 @@
-
 .navbar-lewagon {
   height: 80px;
   justify-content: space-between;
+  border-bottom: 1px solid $border-gray;
+  background-color: $cng-cream;
 }
 
 .navbar-lewagon .navbar-collapse {
