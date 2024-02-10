@@ -71,7 +71,15 @@
         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
           <div class="card">
             <%= link_to cat_path(booking.cat) do %>
-              <%= image_tag "cat-test.jpeg", class: "card-img-top", alt: "Reserved Cat" %>
+              <% if booking.cat.photo.attached? %>
+                  <div class="card-img-top">
+                    <%= cl_image_tag booking.cat.photo.key, alt: booking.cat.name %>
+                  </div>
+                <% else %>
+                  <div class="card-img-top">
+                    <%= image_tag "cat-test.jpeg", alt: "Default Image" %>
+                  </div>
+                <% end %>
             <% end %>
             <div class="card-body">
               <h5 class="card-title"><%= booking.cat.name %></h5>
