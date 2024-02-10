@@ -68,20 +68,13 @@
               <h5 class="card-title"><%= booking.cat.name %></h5>
               <% if booking.status.present? %>
                 <% case booking.status %>
-                  <% when Booking.statuses['pending'] %>
-                    <p class="card-text">Reservation status: Pending</p>
-                  <% when Booking.statuses['accepted'] %>
-                    <p class="card-text">Reservation status: Accepted</p>
-                  <% when Booking.statuses['declined'] %>
-                    <p class="card-text">Reservation status: Declined</p>
+                  <% when booking.status['pending'] %>
+                    <p class="card-text">Your booking is pending.</p>
+                  <% when booking.status['accepted'] %>
+                    <p class="card-text">Your booking is confirmed.</p>
+                  <% when booking.status['declined'] %>
+                    <p class="card-text">Your booking was declined.</p>
                 <% end %>
-                <% if booking.status != 'declined' %>
-                  <p class="card-text">Reserved from <%= booking.start_date %> to <%= booking.end_date %>.</p>
-                <% else %>
-                  <p class="card-text">Booking was declined.</p>
-                <% end %>
-              <% else %>
-                <p class="card-text">Reservation status: Pending</p>
               <% end %>
             </div>
           </div>
