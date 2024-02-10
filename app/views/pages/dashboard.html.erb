@@ -6,24 +6,32 @@
   <div class="my-listings mt-5">
     <div class="section-title mb-5">
       <h2 class="card-title">My Listings</h2>
-      <%= link_to '+ Create a new listing', new_cat_path, class: 'btn btn-primary mx-5' %>
+      <%= link_to '+ Create a new listing', new_cat_path, class: 'btn btn-primary' %>
     </div>
     <!-- Cats cards -->
-    <div class="row">
+    <div class="row row-gap-4">
       <% if @recent_cats.any? %>
         <% @recent_cats.each do |cat| %>
           <!-- Card for each cat listing -->
           <div class="col-12 col-sm-6 col-md-4 col-lg-3">
             <div class="card">
               <%= link_to cat_path(cat) do %>
-                <%= image_tag "cat-test.jpeg", class: "card-img-top", alt: "Ruth the cat" %>
+                <% if cat.photo.attached? %>
+                  <div class="card-img-top">
+                    <%= cl_image_tag cat.photo.key, alt: cat.name %>
+                  </div>
+                <% else %>
+                  <div class="card-img-top">
+                    <%= image_tag "cat-test.jpeg", alt: "Default Image" %>
+                  </div>
+                <% end %>
               <% end %>
               <div class="card-body">
                 <h5 class="card-title"><%= cat.name %></h5>
-                <p class="card-text"><%= cat.description %></p>
-                <p class="card-text">Price per day: <%= number_to_currency(cat.price_per_day, unit: "$") %></p>
+                <p class="card-text description"><%= cat.description %></p>
+                <p class="card-text price">Price per day: <%= number_to_currency(cat.price_per_day, unit: "$") %></p>
                 <%= link_to 'View Details', cat_path(cat) %>
-                <%= link_to 'Edit', edit_cat_path(cat) %>
+                <%= link_to 'Edit', edit_cat_path(cat), class: "ps-3" %>
                 <!-- Display booking requests for the cat -->
                 <% cat.bookings.pending.each do |booking| %>
                   <div class="booking-request mt-3">
