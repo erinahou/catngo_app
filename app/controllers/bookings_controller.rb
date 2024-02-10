@@ -8,22 +8,26 @@ class BookingsController < ApplicationController
     @booking.status = :pending
 
     if @booking.save
-      redirect_to @cat, notice: 'Booking request sent successfully.'
+      flash[:notice] = "Your reservation request for #{@cat.name} has been successfully sent!"
+      redirect_to @cat
     else
       render :new
     end
   end
+
   def accept
     @booking = Booking.find(params[:id])
-    @booking.update(status: 'accepted')
+    @user = @booking.user
+    @booking.accepted!
     redirect_to dashboard_path, notice: 'Booking accepted successfully.'
   end
 
   def decline
     @booking = Booking.find(params[:id])
-    @booking.update(status: 'declined')
+    @booking.declined!
     redirect_to dashboard_path, notice: 'Booking declined successfully.'
   end
+
   private
 
   def booking_params

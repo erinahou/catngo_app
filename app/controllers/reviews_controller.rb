@@ -10,6 +10,7 @@ class ReviewsController < ApplicationController
     @cat = Cat.find(params[:cat_id])
     @review = @cat.reviews.build(review_params)
     @review.user_id = current_user.id
+
     if @review.save
       redirect_to @cat, notice: 'Review was successfully created.'
     else
