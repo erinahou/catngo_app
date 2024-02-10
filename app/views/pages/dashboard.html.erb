@@ -32,6 +32,7 @@
                 <p class="card-text price">Price per day: <%= number_to_currency(cat.price_per_day, unit: "$") %></p>
                 <%= link_to 'View Details', cat_path(cat) %>
                 <%= link_to 'Edit', edit_cat_path(cat), class: "ps-3" %>
+                <%= link_to 'Delete', cat_path(cat), class: "ps-3", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
                 <!-- Display booking requests for the cat -->
                 <% cat.bookings.pending.each do |booking| %>
                   <div class="booking-request mt-3">
